@@ -7,7 +7,7 @@ for /f "tokens=1-3 delims=/- " %%a in ("%date%") do (
     set mm=%%b
     set dd=%%c
 )
-for /f "tokens=1-3 delims=: " %%a in ("%time%") do (
+for /f "tokens=1-3 delims=:." %%a in ("%time%") do (
     set hh=%%a
     set nn=%%b
     set ss=%%c
