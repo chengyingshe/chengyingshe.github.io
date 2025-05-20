@@ -1,9 +1,19 @@
 @echo off
 REM 自动 add、commit（带时间）、push
 
-for /f "tokens=1-2 delims==." %%a in ('wmic os get localdatetime /value') do set datetime=%%b
-set datestamp=%datetime:~0,4%-%datetime:~4,2%-%datetime:~6,2% %datetime:~8,2%:%datetime:~10,2%:%datetime:~12,2%
+REM 获取当前时间，格式为 YYYY-MM-DD HH:MM:SS
+for /f "tokens=1-3 delims=/- " %%a in ("%date%") do (
+    set yyyy=%%a
+    set mm=%%b
+    set dd=%%c
+)
+for /f "tokens=1-3 delims=: " %%a in ("%time%") do (
+    set hh=%%a
+    set nn=%%b
+    set ss=%%c
+)
+set datestamp=%yyyy%-%mm%-%dd% %hh%:%nn%:%ss%
 
 git add .
 git commit -m "update %datestamp%"
-git push 
+git push
