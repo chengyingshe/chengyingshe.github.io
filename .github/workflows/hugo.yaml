@@ -59,6 +59,10 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dummy
+          path: .github/workflows/hugo.yaml
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
